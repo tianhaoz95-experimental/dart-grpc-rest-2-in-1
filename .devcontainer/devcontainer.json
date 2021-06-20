@@ -10,7 +10,8 @@
 	},
 	"settings": {},
 	"extensions": [
-		"dart-code.dart-code"
+		"dart-code.dart-code",
+		"yzhang.markdown-all-in-one"
 	],
 	"postCreateCommand": "git config --global user.name ${localEnv:GIT_ACTOR_NAME} && git config --global user.email ${localEnv:GIT_ACTOR_EMAIL} && bash ./scripts/init_devcontainer.sh",
 	"remoteUser": "vscode"
