@@ -17,7 +17,7 @@ RUN apt-get update && /bin/bash /tmp/library-scripts/common-debian.sh "${INSTALL
 
 # Add bin location to path
 ENV PUB_CACHE="/usr/local/share/pub-cache"
-ENV PATH="${PUB_CACHE}/bin:${PATH}"
+ENV PATH="${PUB_CACHE}/bin:${PATH}:/home/vscode/go/bin"
 RUN if ! cat /etc/group | grep -e "^pub-cache:" > /dev/null 2>&1; then groupadd -r pub-cache; fi \
     && usermod -a -G pub-cache ${USERNAME} \
     && umask 0002 \
@@ -26,4 +26,5 @@ RUN if ! cat /etc/group | grep -e "^pub-cache:" > /dev/null 2>&1; then groupadd 
     && sed -i -e "s/export PATH=/export PATH=\/usr\/local\/share\/pub-cache:/" /etc/profile.d/00-restore-env.sh
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends protobuf-compiler
+    && apt-get -y install --no-install-recommends \
+    protobuf-compiler golang
